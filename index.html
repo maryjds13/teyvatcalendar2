@@ -16,7 +16,8 @@
         }
 
         .calendar-widget {
-            width: 300px; /* adjust for compactness */
+            width: 90vw; /* Using relative width */
+            max-width: 400px; /* Set a max width to prevent it from becoming too large */
             text-align: center;
             background-color: transparent;
         }
@@ -25,9 +26,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.5em;
+            font-size: 5vw; /* Use viewport width for resizing */
             color: #37352F;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .nav-button {
@@ -35,36 +36,36 @@
             border: none;
             color: #37352F;
             cursor: pointer;
-            font-size: 1.5em;
+            font-size: 5vw; /* Use viewport width for resizing */
         }
 
         .divider {
             border: none;
             border-bottom: 1px solid #ada3dd;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             color: #ada3dd;
-            font-size: 1em; /* Keep the font size the same */
-            padding: 5px 0; /* Add some padding to make the grid slightly bigger */
+            font-size: 4vw; /* Use viewport width for resizing */
+            padding: 5px 0;
         }
 
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            grid-gap: 15px; /* Increased gap between the days */
-            font-size: 1em; /* Keep the font size the same */
+            grid-gap: 2vw; /* Adjust grid gap based on viewport width */
+            font-size: 4vw; /* Use viewport width for resizing */
             color: #37352F;
         }
 
         .day {
-            padding: 15px; /* Increased padding to make the day circles bigger */
+            padding: 3vw; /* Adjust padding using viewport width for responsive design */
             border-radius: 50%;
             cursor: pointer;
-            text-align: center; /* Ensure text stays centered */
+            text-align: center;
         }
 
         .current-day {
@@ -75,6 +76,17 @@
         .selected-day {
             border: 2px solid #ada3dd;
             color: #37352F;
+        }
+
+        /* Media query to adjust for very small screens */
+        @media (max-width: 400px) {
+            .calendar-widget {
+                width: 100vw; /* Make the widget take full width on small screens */
+            }
+            .header, .nav-button, .weekdays, .days-grid, .day {
+                font-size: 3vw; /* Reduce font size for small screens */
+                padding: 2vw; /* Reduce padding on small screens */
+            }
         }
     </style>
 </head>
@@ -155,18 +167,4 @@
         generateCalendar(currentDate);
 
         // Event listeners for month navigation
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            displayMonthYear(currentDate);
-            generateCalendar(currentDate);
-        });
-
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            displayMonthYear(currentDate);
-            generateCalendar(currentDate);
-        });
-    </script>
-</body>
-</html>
-
+        document.getElementById('prevMonth').addEventListener('click
