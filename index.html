@@ -145,13 +145,22 @@
         function generateCalendar(date) {
             daysGrid.innerHTML = '';
             
-            const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+            // Get the first day of the month (starting from Monday)
+            let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+            if (firstDay === 0) firstDay = 7; // Shift Sunday to the end of the week
+
             const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
             // Get the current day for highlighting
             const today = new Date();
             const isCurrentMonth = today.getMonth() === date.getMonth() && today.getFullYear() === date.getFullYear();
             const currentDay = isCurrentMonth ? today.getDate() : null;
+
+            // Create empty divs for days before the first day of the month
+            for (let i = 1; i < firstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                daysGrid.appendChild(emptyDiv);
+            }
 
             // Loop to generate day cells
             for (let i = 1; i <= lastDate; i++) {
