@@ -48,21 +48,23 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             color: #ada3dd;
-            font-size: 1em;
+            font-size: 1em; /* Keep the font size the same */
+            padding: 5px 0; /* Add some padding to make the grid slightly bigger */
         }
 
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            grid-gap: 10px;
-            font-size: 1em;
+            grid-gap: 15px; /* Increased gap between the days */
+            font-size: 1em; /* Keep the font size the same */
             color: #37352F;
         }
 
         .day {
-            padding: 10px;
+            padding: 15px; /* Increased padding to make the day circles bigger */
             border-radius: 50%;
             cursor: pointer;
+            text-align: center; /* Ensure text stays centered */
         }
 
         .current-day {
@@ -167,3 +169,4 @@
     </script>
 </body>
 </html>
+
