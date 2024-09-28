@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Calendar Widget</title>
+    <title>Responsive Minimalist Calendar Widget</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: white; /* or transparent depending on your need */
+            background-color: white;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,8 +16,9 @@
         }
 
         .calendar-widget {
-            width: 90vw; /* Using relative width */
-            max-width: 400px; /* Set a max width to prevent it from becoming too large */
+            width: 100%; /* 100% of the container, will resize dynamically */
+            max-width: 500px; /* Ensure it doesn’t become too large */
+            padding: 20px;
             text-align: center;
             background-color: transparent;
         }
@@ -26,9 +27,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 5vw; /* Use viewport width for resizing */
+            font-size: 1.8vw; /* Font-size adapts to screen size */
             color: #37352F;
-            margin: 5px 0;
+            margin: 10px 0;
         }
 
         .nav-button {
@@ -36,33 +37,33 @@
             border: none;
             color: #37352F;
             cursor: pointer;
-            font-size: 5vw; /* Use viewport width for resizing */
+            font-size: 1.8vw; /* Same size as month/year text */
         }
 
         .divider {
             border: none;
             border-bottom: 1px solid #ada3dd;
-            margin: 5px 0;
+            margin: 10px 0;
         }
 
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             color: #ada3dd;
-            font-size: 4vw; /* Use viewport width for resizing */
+            font-size: 1.6vw; /* Responsive font-size */
             padding: 5px 0;
         }
 
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-gap: 2vw; /* Adjust grid gap based on viewport width */
-            font-size: 4vw; /* Use viewport width for resizing */
+            grid-template-columns: repeat(7, 1fr); /* Evenly distribute columns */
+            grid-gap: 10px;
+            font-size: 1.6vw; /* Responsive font-size */
             color: #37352F;
         }
 
         .day {
-            padding: 3vw; /* Adjust padding using viewport width for responsive design */
+            padding: 15%; /* % padding ensures adaptable size */
             border-radius: 50%;
             cursor: pointer;
             text-align: center;
@@ -78,14 +79,27 @@
             color: #37352F;
         }
 
-        /* Media query to adjust for very small screens */
-        @media (max-width: 400px) {
-            .calendar-widget {
-                width: 100vw; /* Make the widget take full width on small screens */
+        @media (max-width: 768px) {
+            .header, .nav-button, .weekdays, .days-grid {
+                font-size: 3vw; /* Increase font size on smaller screens */
             }
-            .header, .nav-button, .weekdays, .days-grid, .day {
-                font-size: 3vw; /* Reduce font size for small screens */
-                padding: 2vw; /* Reduce padding on small screens */
+
+            .day {
+                padding: 10%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-widget {
+                max-width: 90vw; /* Full width on very small screens */
+            }
+
+            .header, .nav-button, .weekdays, .days-grid {
+                font-size: 4vw; /* Further increase on tiny screens */
+            }
+
+            .day {
+                padding: 8%;
             }
         }
     </style>
@@ -94,9 +108,9 @@
     <div class="calendar-widget">
         <!-- Header with month and year -->
         <div class="header">
-            <button id="prevMonth" class="nav-button">&#9664;</button> <!-- Left arrow -->
+            <button id="prevMonth" class="nav-button">&#9664;</button>
             <span id="monthYear">JAN 2023</span>
-            <button id="nextMonth" class="nav-button">&#9654;</button> <!-- Right arrow -->
+            <button id="nextMonth" class="nav-button">&#9654;</button>
         </div>
         <!-- Divider -->
         <hr class="divider">
@@ -167,4 +181,17 @@
         generateCalendar(currentDate);
 
         // Event listeners for month navigation
-        document.getElementById('prevMonth').addEventListener('click
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            displayMonthYear(currentDate);
+            generateCalendar(currentDate);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            displayMonthYear(currentDate);
+            generateCalendar(currentDate);
+        });
+    </script>
+</body>
+</html>
